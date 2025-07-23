@@ -7,7 +7,7 @@ FROM `employee attrition`
 
 -- Method 1
 SELECT 
-		ROUND(
+	ROUND(
         (SELECT COUNT(MaritalStatus)
         FROM `employee attrition`
         WHERE MaritalStatus = 'Divorced') 
@@ -20,17 +20,17 @@ SELECT
         
 -- Method 2
 WITH Total_employees AS (
-						 SELECT 
+			 SELECT 
                          COUNT(MaritalStatus) AS TotalEmployees
                          FROM `employee attrition`
                          )
-						SELECT
-							ROUND(
+			 SELECT
+			    ROUND(
                             (SELECT 
                             COUNT(MaritalStatus)
                             FROM `employee attrition`
                             WHERE MaritalStatus = 'Divorced') * 100
                             /
                             TotalEmployees,2) AS Percentage_Divorced
-							FROM Total_employees
+			    FROM Total_employees
                             ;
